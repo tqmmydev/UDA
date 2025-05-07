@@ -1,5 +1,27 @@
 @import "lenis/dist/lenis.css";
 @import "tailwindcss";
+@theme {
+  --linear-bg: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent);
+}
 @plugin "daisyui" {
-  themes: false;
+  themes: personal --default;
+}
+@plugin "daisyui/theme" {
+  name: "personal";
+  default: true;
+  preferesdark: false;
+  color-scheme: "dark";
+
+  --color-base-100: oklch(17% 0 0);
+  --color-base-content: oklch(100% 0 0);
+
+  --color-primary: #2402E2;
+  --color-primary-content: oklch(100% 0 0);
+  --color-secondary-content: oklch(100% 0 0);
+
+  --depth: 0;
+}
+
+.base-stroke {
+  border: 2px solid color-mix(in oklch, var(--color-primary-content) 15%, transparent 0%);
 }

@@ -1,10 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { LenisService } from './services/lenis.service';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [
+    SidebarComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
