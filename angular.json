@@ -18,6 +18,9 @@
             "browser": "src/main.ts",
             "polyfills": ["src/zone-flags.ts", "zone.js"],
             "tsConfig": "tsconfig.app.json",
+            "allowedCommonJsDependencies": [
+              "highlight.js"
+            ],
             "assets": [
               {
                 "glob": "**/*",

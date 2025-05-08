@@ -1,0 +1,39 @@
+<div class="base-stroke [background:var(--linear-bg)] w-full rounded-[1.5em] h-full overflow-x-hidden overflow-y-auto" id="scroller" #scroller>
+  <div class="flex flex-col w-full" [style.--screen-height.px]="scroller.clientHeight" id="content">
+    <section class="relative flex flex-col items-center justify-center gap-4 h-(--screen-height)">
+      <h1 class="text-6xl font-bold">Lezione Simulata</h1>
+      <p class="text-xl font-semibold text-primary-content/75">Ereditarietà</p>
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col gap-4 items-center text-[32px]" data-speed="2">
+        <get-icon name="mouse" class="bounce"></get-icon>
+        <get-icon name="arrow-down"></get-icon>
+      </div>
+    </section>
+    <section class="relative">
+      <div class="h-(--screen-height) sticky top-0 flex flex-row justify-around items-center px-6">
+        <div class="min-w-128 max-w-[40%]">
+          <h1 class="header-1">Titolo</h1>
+          <p class="paragraph-1">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Dolores harum quibusdam aspernatur consectetur expedita dignissimos, magni blanditiis eligendi vitae possimus excepturi
+            necessitatibus beatae, tempora, totam eos. Ullam atque quis reiciendis architecto vero.
+          </p>
+        </div>
+        <pre>
+          <code [highlight]="`class App {
+    public static void main(String[] args) {
+      System.out.println('Hello World');
+    }
+}`" language="java" lineNumbers></code>
+        </pre>
+      </div>
+    </section>
+
+    <section class="grid place-items-center h-(--screen-height)">
+      Test 2
+    </section>
+
+    <section class="grid place-items-center h-(--screen-height)">
+      Test 3
+    </section>
+  </div>
+</div>
