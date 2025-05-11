@@ -24,6 +24,9 @@ code.hljs {
   border: 2px solid rgba(255, 255, 255, .1);
   border-radius: 1em;
 }
+.hljs * {
+  white-space: break-spaces;
+}
 .hljs-doctag,
 .hljs-keyword,
 .hljs-meta .hljs-keyword,
@@ -121,6 +124,9 @@ code.hljs {
 
 }
 
+.hljs-ln-line {
+  vertical-align: text-top;
+}
 .hljs-ln-n {
   border-right: 1px solid rgba(255, 255, 255, .25);
   margin-right: .5rem;

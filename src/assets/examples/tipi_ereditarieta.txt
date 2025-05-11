@@ -1,0 +1,15 @@
+// Ereditarietà Singola
+// class B extends A {}
+
+// Ereditarietà Multilivello
+// class A {}
+// class B extends A {}
+// class C extends B {}
+
+// Ereditarietà Gerarchica
+// class Veicolo {}
+// class Auto extends Veicolo {}
+// class Moto extends Veicolo {}
+
+// NON POSSIBILE DIRETTAMENTE IN JAVA (per le classi):
+// class D extends B, C {} // ERRORE

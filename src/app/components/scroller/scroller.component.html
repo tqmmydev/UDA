@@ -1,39 +1,209 @@
-<div class="base-stroke [background:var(--linear-bg)] w-full rounded-[1.5em] h-full overflow-x-hidden overflow-y-auto" id="scroller" #scroller>
+<get-icon name="bars" class="z-50 absolute top-8 left-8 text-white/50 cursor-pointer text-[32px]" (click)="sidebar.toggleSidebar()" *ngIf="!sidebar.showSidebar"></get-icon>
+<div class="base-stroke [background:var(--linear-bg)] w-full max-w-screen rounded-[1.5em] h-full overflow-x-hidden overflow-y-auto" id="scroller" #scroller>
   <div class="flex flex-col w-full" [style.--screen-height.px]="scroller.clientHeight" id="content">
     <section class="relative flex flex-col items-center justify-center gap-4 h-(--screen-height)">
-      <h1 class="text-6xl font-bold">Lezione Simulata</h1>
-      <p class="text-xl font-semibold text-primary-content/75">Ereditarietà</p>
-      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col gap-4 items-center text-[32px]" data-speed="2">
+      <h1 class="text-6xl font-bold text-center" #title>Lezione Simulata</h1>
+      <p class="text-xl font-semibold text-primary-content/75 text-center" #subtitle>Ereditarietà</p>
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col gap-4 items-center text-[32px]" #mouse>
         <get-icon name="mouse" class="bounce"></get-icon>
         <get-icon name="arrow-down"></get-icon>
       </div>
     </section>
-    <section class="relative">
-      <div class="h-(--screen-height) sticky top-0 flex flex-row justify-around items-center px-6">
-        <div class="min-w-128 max-w-[40%]">
-          <h1 class="header-1">Titolo</h1>
-          <p class="paragraph-1">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Dolores harum quibusdam aspernatur consectetur expedita dignissimos, magni blanditiis eligendi vitae possimus excepturi
-            necessitatibus beatae, tempora, totam eos. Ullam atque quis reiciendis architecto vero.
-          </p>
-        </div>
-        <pre>
-          <code [highlight]="`class App {
-    public static void main(String[] args) {
-      System.out.println('Hello World');
-    }
-}`" language="java" lineNumbers></code>
-        </pre>
+    <!-- <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full">
+        <h1 class="header-1">Titolo</h1>
+        <p class="paragraph-1">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Dolores harum quibusdam aspernatur consectetur expedita dignissimos, magni blanditiis eligendi vitae possimus excepturi
+          necessitatibus beatae, tempora, totam eos. Ullam atque quis reiciendis architecto vero.
+        </p>
+      </div>
+      <pre>
+        <code [highlight]="fetchCode('sintassi_base.java')" language="java" lineNumbers></code>
+      </pre>
+    </section> -->
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full">
+        <h1 class="header-1">Introduzione: Cos'è l'Ereditarietà?</h1>
+        <p class="paragraph-1">
+          L'ereditarietà è uno dei pilastri della Programmazione Orientata agli Oggetti (OOP). Permette a una nuova classe (detta sottoclasse o classe figlia) di acquisire (ereditare) le caratteristiche (attributi) e i comportamenti (metodi) di una classe esistente (detta superclasse o classe madre). Immagina una relazione "genitore-figlio" tra classi.
+        </p>
+      </div>
+      <img class="place-self-center" src="graphs/graph-01.svg" alt="">
+    </section>
+
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full col-span-2">
+        <h1 class="header-1">Perché Usare l'Ereditarietà? I Vantaggi</h1>
+        <p class="paragraph-1">
+          L'ereditarietà offre vantaggi significativi:<br><br>
+          <strong>Riuso del Codice</strong>: Evita di riscrivere codice comune, inserendolo nella superclasse.<br>
+          <strong>Estendibilità</strong>: Le sottoclassi possono aggiungere nuove funzionalità specifiche.<br>
+          <strong>Organizzazione Gerarchica</strong>: Modella relazioni "è un tipo di", rendendo il codice più comprensibile.<br>
+          <strong>Polimorfismo</strong>: Apre la strada a comportamenti flessibili, che vedremo in seguito.
+        </p>
       </div>
     </section>
 
-    <section class="grid place-items-center h-(--screen-height)">
-      Test 2
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full">
+        <h1 class="header-1">Terminologia Fondamentale</h1>
+        <p class="paragraph-1">
+          <strong>Superclasse</strong>: La classe da cui si eredita.<br>
+          <strong>Sottoclasse</strong>: La classe che eredita.<br>
+          La relazione è unidirezionale: la sottoclasse conosce la sua superclasse, ma non viceversa.
+        </p>
+      </div>
+      <div>
+        <img class="place-self-center" src="graphs/graph-02.svg" alt="">
+      </div>
     </section>
 
-    <section class="grid place-items-center h-(--screen-height)">
-      Test 3
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full">
+        <h1 class="header-1">La Sintassi: La Parola Chiave <code>extends</code></h1>
+        <p class="paragraph-1">
+          In Java, per stabilire una relazione di ereditarietà tra due classi, si utilizza la parola chiave <code>extends</code>. La sottoclasse "estende" la superclasse.
+        </p>
+      </div>
+      <pre><code [highlight]="fetchCode('esempio_extends.java')" language="java" lineNumbers></code></pre>
+    </section>
+
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full">
+        <h1 class="header-1">Esempio Pratico: La Superclasse Animale</h1>
+        <p class="paragraph-1">
+          Creiamo una superclasse generica <code>Animale</code> che definisce caratteristiche e comportamenti comuni a tutti gli animali.
+        </p>
+      </div>
+      <pre><code [highlight]="fetchCode('esempio_animale.java')" language="java" lineNumbers></code></pre>
+    </section>
+
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full">
+        <h1 class="header-1">Esempio Pratico: La Sottoclasse Cane</h1>
+        <p class="paragraph-1">
+          Ora creiamo una sottoclasse <code>Cane</code> che eredita da <code>Animale</code>, e aggiunge attributi e metodi specifici.
+        </p>
+      </div>
+      <pre><code [highlight]="fetchCode('esempio_cane.java')" language="java" lineNumbers></code></pre>
+    </section>
+
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full">
+        <h1 class="header-1">Utilizzo delle Classi: Creare Oggetti</h1>
+        <p class="paragraph-1">
+          Vediamo come creare oggetti e usare i metodi ereditati e specifici.
+        </p>
+      </div>
+      <pre><code [highlight]="fetchCode('creare_oggetti.java')" language="java" lineNumbers></code></pre>
+    </section>
+
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[5vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full">
+        <h1 class="header-1">Modificatori di Accesso e Ereditarietà</h1>
+        <p class="paragraph-1">
+          I modificatori determinano cosa una sottoclasse può vedere o usare della superclasse: <code>public</code>, <code>protected</code>, <code>default</code>, <code>private</code>.
+        </p>
+      </div>
+      <div class="flex flex-col w-full">
+        <pre><code [highlight]="fetchCode('modificatori_di_accesso.java')" language="java" lineNumbers></code></pre>
+        <pre><code [highlight]="fetchCode('output_modificatori_di_accesso.txt')" language="vim" lineNumbers></code></pre>
+      </div>
+    </section>
+
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full">
+        <h1 class="header-1">La Parola Chiave <code>super</code> (Costruttori)</h1>
+        <p class="paragraph-1">
+          <code>super</code> viene usato per chiamare il costruttore della superclasse dalla sottoclasse.
+        </p>
+      </div>
+      <div class="flex flex-col w-full">
+        <pre><code [highlight]="fetchCode('keyword_super.java')" language="java" lineNumbers></code></pre>
+        <pre><code [highlight]="fetchCode('output_keyword_super.txt')" language="vim" lineNumbers></code></pre>
+      </div>
+    </section>
+
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full">
+        <h1 class="header-1">La Parola Chiave <code>super</code> (Metodi e Attributi)</h1>
+        <p class="paragraph-1">
+          <code>super</code> permette di accedere a metodi o attributi della superclasse, anche se sono stati ridefiniti.
+        </p>
+      </div>
+      <div class="flex flex-col w-full">
+        <pre><code [highlight]="fetchCode('keyword_super_methods_and_attrs.java')" language="java" lineNumbers></code></pre>
+        <pre><code [highlight]="fetchCode('output_keyword_super_methods_and_attrs.txt')" language="vim" lineNumbers></code></pre>
+      </div>
+    </section>
+
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full">
+        <h1 class="header-1">Overriding dei Metodi (Sovrascrittura)</h1>
+        <p class="paragraph-1">
+          Una sottoclasse può fornire una propria versione di un metodo ereditato. Usa <code>&#64;Override</code> per chiarezza e sicurezza.
+        </p>
+      </div>
+      <pre><code [highlight]="fetchCode('overriding_dei_metodi.java')" language="java" lineNumbers></code></pre>
+    </section>
+
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full">
+        <h1 class="header-1">L'Annotazione <code>&#64;Override</code></h1>
+        <p class="paragraph-1">
+          Aiuta il compilatore a rilevare errori nel sovrascrivere metodi. Obbliga a usare nomi e firme corretti.
+        </p>
+      </div>
+      <pre><code [highlight]="fetchCode('annotazione_override.java')" language="java" lineNumbers></code></pre>
+    </section>
+
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full">
+        <h1 class="header-1">Tipi di Ereditarietà in Java</h1>
+        <p class="paragraph-1">
+          Java supporta ereditarietà singola, multilivello e gerarchica, ma non l'ereditarietà multipla tra classi.
+        </p>
+      </div>
+      <pre><code [highlight]="fetchCode('tipi_ereditarieta.txt')" language="vim" lineNumbers></code></pre>
+    </section>
+
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full">
+        <h1 class="header-1">Esempio Pratico: Gerarchia di Veicolo</h1>
+        <p class="paragraph-1">
+          Una superclasse <code>Veicolo</code> con due sottoclassi: <code>Automobile</code> e <code>Bicicletta</code>, che ridefiniscono il metodo <code>start()</code>.
+        </p>
+      </div>
+      <pre><code [highlight]="fetchCode('gerarchia_veicolo.java')" language="java" lineNumbers></code></pre>
+    </section>
+
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full">
+        <h1 class="header-1">Quando NON Usare l'Ereditarietà</h1>
+        <p class="paragraph-1">
+          Se la relazione è "HA UN" invece di "È UN", preferisci la **composizione**. Es: Automobile ha un Motore, non è un Motore.
+        </p>
+        <pre><code [highlight]="fetchCode('composizione_esempio.java')" language="java" lineNumbers></code></pre>
+      </div>
+    </section>
+
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full">
+        <h1 class="header-1">Riepilogo dei Vantaggi</h1>
+        <p class="paragraph-1">
+          <strong>Riusabilità</strong>, <strong>Estendibilità</strong>, <strong>Mantenibilità</strong>, <strong>Chiarezza</strong>, e <strong>Polimorfismo</strong> sono tra i principali benefici dell’ereditarietà.
+        </p>
+      </div>
+    </section>
+
+    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
+      <div class="min-w-80 w-full col-span-2 place-self-center">
+        <h1 class="text-4xl text-center">Svolgi il quiz</h1>
+      </div>
     </section>
   </div>
 </div>
+<!-- <pre>
+  <code [highlight]="fetchCode('esempio_semplice.java')" language="java" lineNumbers></code>
+</pre> -->

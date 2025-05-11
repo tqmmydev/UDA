@@ -20,6 +20,7 @@ export const appConfig: ApplicationConfig = {
       coreLibraryLoader: () => import('highlight.js/lib/core'),
       languages: {
         java: () => import('highlight.js/lib/languages/java'),
+        vim: () => import('highlight.js/lib/languages/vim'),
       },
       themePath: '/styles/github-dark.css'
     })

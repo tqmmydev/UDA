@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { LenisService } from './services/lenis.service';
+import { Component } from '@angular/core';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ScrollerComponent } from './components/scroller/scroller.component';
 
@@ -13,4 +12,6 @@ import { ScrollerComponent } from './components/scroller/scroller.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {}
+export class AppComponent {
+  sidebar = SidebarComponent;
+}

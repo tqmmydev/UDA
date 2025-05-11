@@ -14,3 +14,8 @@
 .bounce {
   animation: bounce 2.5s ease-in-out infinite;
 }
+
+h1 > code, p > code {
+  background-color: black;
+  padding-inline: .25rem;
+}
