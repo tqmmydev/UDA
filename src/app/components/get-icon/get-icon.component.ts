@@ -1,13 +1,13 @@
 import { isPlatformServer } from '@angular/common';
 import { Component, inject, Input, PLATFORM_ID } from '@angular/core';
 import { NgIcon, provideIcons, provideNgIconLoader } from '@ng-icons/core';
-import { heroBars3 } from '@ng-icons/heroicons/outline'
+import { heroArrowUturnLeft, heroBars3 } from '@ng-icons/heroicons/outline'
 
 @Component({
   selector: 'get-icon',
   imports: [NgIcon],
   providers: [
-    provideIcons({ bars: heroBars3 }),
+    provideIcons({ bars: heroBars3, left: heroArrowUturnLeft }),
     provideNgIconLoader(name => {
       if (isPlatformServer(inject(PLATFORM_ID))) {
         return '';

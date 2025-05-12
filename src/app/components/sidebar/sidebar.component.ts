@@ -44,7 +44,10 @@ export class SidebarComponent implements AfterViewInit {
         duration: 0,
         delay: .5
       });
-      localStorage.getItem('showSidebar') === 'false' ? this.sidebar.toggleSidebar() : null;
+      if (localStorage.getItem('showSidebar') === 'false') {
+        SidebarComponent.showSidebar = false;
+        SidebarComponent.tl.play(4);
+      }
     }
   }
 
@@ -54,6 +57,7 @@ export class SidebarComponent implements AfterViewInit {
     if (this.showSidebar) {
       SidebarComponent.tl.reverse();
     } else {
+      SidebarComponent.tl.duration(1);
       SidebarComponent.tl.play();
     }
   }

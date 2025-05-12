@@ -9,19 +9,6 @@
         <get-icon name="arrow-down"></get-icon>
       </div>
     </section>
-    <!-- <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
-      <div class="min-w-80 w-full">
-        <h1 class="header-1">Titolo</h1>
-        <p class="paragraph-1">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Dolores harum quibusdam aspernatur consectetur expedita dignissimos, magni blanditiis eligendi vitae possimus excepturi
-          necessitatibus beatae, tempora, totam eos. Ullam atque quis reiciendis architecto vero.
-        </p>
-      </div>
-      <pre>
-        <code [highlight]="fetchCode('sintassi_base.java')" language="java" lineNumbers></code>
-      </pre>
-    </section> -->
     <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
       <div class="min-w-80 w-full">
         <h1 class="header-1">Introduzione: Cos'è l'Ereditarietà?</h1>
@@ -106,10 +93,7 @@
           I modificatori determinano cosa una sottoclasse può vedere o usare della superclasse: <code>public</code>, <code>protected</code>, <code>default</code>, <code>private</code>.
         </p>
       </div>
-      <div class="flex flex-col w-full">
-        <pre><code [highlight]="fetchCode('modificatori_di_accesso.java')" language="java" lineNumbers></code></pre>
-        <pre><code [highlight]="fetchCode('output_modificatori_di_accesso.txt')" language="vim" lineNumbers></code></pre>
-      </div>
+      <pre><code [highlight]="fetchCode('modificatori_di_accesso.java')" language="java" lineNumbers></code></pre>
     </section>
 
     <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
@@ -184,22 +168,17 @@
         <p class="paragraph-1">
           Se la relazione è "HA UN" invece di "È UN", preferisci la **composizione**. Es: Automobile ha un Motore, non è un Motore.
         </p>
-        <pre><code [highlight]="fetchCode('composizione_esempio.java')" language="java" lineNumbers></code></pre>
       </div>
+      <pre><code [highlight]="fetchCode('composizione_esempio.java')" language="java" lineNumbers></code></pre>
     </section>
 
     <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
-      <div class="min-w-80 w-full">
+      <div class="min-w-80 w-full col-span-2 text-center max-w-[520px] place-self-center">
         <h1 class="header-1">Riepilogo dei Vantaggi</h1>
         <p class="paragraph-1">
           <strong>Riusabilità</strong>, <strong>Estendibilità</strong>, <strong>Mantenibilità</strong>, <strong>Chiarezza</strong>, e <strong>Polimorfismo</strong> sono tra i principali benefici dell’ereditarietà.
         </p>
-      </div>
-    </section>
-
-    <section class="relative h-(--screen-height) grid max-xl:flex max-xl:flex-col gap-[4vw] xl:grid-cols-2 xl:px-[6vw] justify-center items-center px-6">
-      <div class="min-w-80 w-full col-span-2 place-self-center">
-        <h1 class="text-4xl text-center">Svolgi il quiz</h1>
+        <button class="btn btn-primary mt-6" (click)="navigator.goToQuiz()">Svolgi il quiz</button>
       </div>
     </section>
   </div>

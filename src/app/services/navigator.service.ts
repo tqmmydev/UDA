@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { ElementRef, inject, Injectable, ViewChild } from '@angular/core';
+import { GsapService } from './gsap.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +17,30 @@ export class NavigatorService {
     { icon: '', name: 'Ereditarietà e overriding', id: 'ereditarietà-e-overriding' },
     { icon: '', name: 'Esempio pratico completo', id: 'esempio-pratico-completo' },
   ];
-
-  constructor() { }
+  gsap = inject(GsapService);
+  showedQuiz = false;
 
   goToSection(id: string) {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  goToQuiz() {
+    this.showedQuiz = !this.showedQuiz;
+    if (this.showedQuiz) {
+      this.gsap.instance.to('#appElement', {
+        translateY: '-50%',
+        duration: 1,
+        ease: 'expo.inOut'
+      });
+    } else {
+      this.gsap.instance.to('#appElement', {
+        translateY: '0%',
+        duration: 1,
+        ease: 'expo.inOut'
+      });;
     }
   }
 }
