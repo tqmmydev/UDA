@@ -1,0 +1,3 @@
+Metodo stampa() della classe Base, valore: 10
+Metodo stampa() della classe Derivata, valore: 20
+Valore della superclasse: 10
