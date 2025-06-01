@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
+import { NavigatorService } from '../../services/navigator.service';
 
 @Component({
   selector: 'app-account',
@@ -7,10 +8,23 @@ import { environment } from '../../../environments/environment.development';
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
 })
-export class AccountComponent {
+export class AccountComponent implements AfterViewInit {
+  navigator = inject(NavigatorService);
+  userInfo: any;
+  async ngAfterViewInit() {
+      if (typeof document !== 'undefined') {
+        const req = await fetch('/api/profile');
+        const res = await req.json();
+        this.userInfo = res;
+      }
+  }
   async handleClick() {
-    const req = await fetch((environment.production === false ? 'http://localhost:4000' : '') + '/auth/google/url');
-    const res = await req.json();
-    window.location.href = res.url;
+    if (!this.userInfo) {
+      const req = await fetch('/auth/google/url?callbackHost=' + window.location.origin + '&callbackUrl=' + window.location.href);
+      const res = await req.json();
+      window.location.href = res.url;
+      return;
+    }
+    this.navigator.goToQuiz();
   }
 }

@@ -6,7 +6,7 @@ import cors from 'cors';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import bootstrap from './main.server';
-import { environment } from './environments/environment.development';
+import { environment } from './environments/environment';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
@@ -17,7 +17,9 @@ import expressSession from 'express-session';
 const app = express();
 const commonEngine = new CommonEngine();
 
+const hostname = process.env['HOSTNAME'] || 'http://localhost:4000';
 const port = process.env['PORT'] || 4000;
+
 
 /**
  * Example Express Rest API endpoints can be defined here.
@@ -32,7 +34,7 @@ const port = process.env['PORT'] || 4000;
  */
 
 app.use(cors({
-  origin: `http://localhost:${port}`,
+  origin: `${hostname}`,
   credentials: true
 }));
 app.use(express.json());
@@ -41,7 +43,7 @@ app.use(expressSession({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: environment.production, // Set to true in production (HTTPS)
+    secure: true, // Set to true in production (HTTPS)
     httpOnly: true, // Important for security
     sameSite: 'lax' // Recommended for most cases
   }
@@ -51,19 +53,24 @@ import { web } from './environments/oauth2_secret.json'
 const oauth2Client = new google.auth.OAuth2(
   web.client_id,
   web.client_secret,
-  'http://localhost:4000/auth/google/callback' // Redirect URI - this is more appropriate than auth_uri
+  `${hostname}/auth/google/callback` // Redirect URI - this is more appropriate than auth_uri
 )
 
 app.get('/auth/google/url', (req: any, res) => {
+  const { callbackHost, callbackUrl } = req.query;
+  if (!callbackHost || !callbackUrl) {
+    res.status(400).send('Missing callback host and callback path');
+    return;
+  }
   const scopes = [
     'https://www.googleapis.com/auth/userinfo.profile',
-    'https://www.googleapis.com/auth/userinfo.email'
+    'https://www.googleapis.com/auth/userinfo.email',
   ];
 
   const url = oauth2Client.generateAuthUrl({
     access_type: 'offline', // 'online' (default) or 'offline' (for refresh tokens)
     scope: scopes,
-    redirect_uri: `http://localhost:${port}/auth/google/callback` // Must match the one configured in Google Cloud Console
+    redirect_uri: `${callbackHost}/auth/google/callback`, // Must match the one configured in Google Cloud Console
   });
 
   console.log(url);
@@ -71,8 +78,7 @@ app.get('/auth/google/url', (req: any, res) => {
 });
 
 app.get('/auth/google/callback', async (req: any, res) => {
-    const { code } = req.query;
-
+    const { code, state } = req.query;
     try {
         const { tokens } = await oauth2Client.getToken(code);
         oauth2Client.setCredentials(tokens);
@@ -95,12 +101,13 @@ app.get('/auth/google/callback', async (req: any, res) => {
         req.session.user = {
             email: userInfo.data.email,
             name: userInfo.data.name,
+            photo: userInfo.data.picture,
             accessToken: tokens.access_token,
             refreshToken: tokens.refresh_token
         };
 
         // Redirect to your Angular app after successful authentication
-        res.redirect(`http://localhost:${port}/api/profile`); // Replace with your desired route
+        res.redirect(hostname); // Replace with your desired route
     } catch (error) {
         console.error('Error exchanging code for tokens:', error);
         res.status(500).send('Authentication failed.');
@@ -116,14 +123,19 @@ app.get('/api/profile', (req: any, res) => {
 });
 
 app.get('/api/logout', (req: any, res) => {
-    req.session.destroy((err: any) => {
-        if (err) {
-            console.error('Error destroying session:', err);
-            res.status(500).send('Logout failed.');
-        } else {
-            res.redirect(`http://localhost:${port}/`); // Redirect to login page
-        }
-    });
+  const { callbackUrl } = req.query;
+  if (!callbackUrl) {
+    res.status(400).send('Missing callback path');
+    return;
+  }
+  req.session.destroy((err: any) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      res.status(500).send('Logout failed.');
+    } else {
+      res.redirect(callbackUrl); // Redirect to login page
+    }
+  });
 });
 
 /**

@@ -18,7 +18,12 @@
             "browser": "src/main.ts",
             "polyfills": ["src/zone-flags.ts", "zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "allowedCommonJsDependencies": ["highlight.js", "lodash"],
+            "allowedCommonJsDependencies": [
+              "highlight.js",
+              "cors",
+              "googleapis",
+              "express-session"
+            ],
             "assets": [
               {
                 "glob": "**/*",
@@ -46,7 +51,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
+                  "maximumWarning": "600kB",
                   "maximumError": "1MB"
                 },
                 {
