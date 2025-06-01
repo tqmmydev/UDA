@@ -7,15 +7,21 @@ import { GsapService } from './gsap.service';
 export class NavigatorService {
   sections: Section[] = [
     { icon: '', name: 'Intro', id: 'intro' },
-    { icon: '', name: 'Sintassi base', id: 'sintassi-base' },
-    { icon: '', name: 'Esempio semplice', id: 'esempio-semplice' },
-    { icon: '', name: 'Accesso all\'istanza', id: 'accesso-istanza' },
-    { icon: '', name: 'Vantaggi', id: 'vantaggi' },
-    { icon: '', name: 'Tipi di ereditarietà', id: 'tipi-ereditarietà' },
-    { icon: '', name: 'Parola chiave super', id: 'parola-chiave-super' },
+    { icon: '', name: 'Perché usarla', id: 'utilizzi' },
+    { icon: '', name: 'Terminologia', id: 'terminologia' },
+    { icon: '', name: 'Sintassi di extends', id: 'sintassi-extends' },
+    { icon: '', name: 'Superclasse Animale', id: 'superclasse-animale' },
+    { icon: '', name: 'Sottoclasse Cane', id: 'sottoclasse-cane' },
+    { icon: '', name: 'Creare oggetti', id: 'creare-oggetti' },
     { icon: '', name: 'Modificatori di accesso', id: 'modificatori-di-accesso' },
-    { icon: '', name: 'Ereditarietà e overriding', id: 'ereditarietà-e-overriding' },
-    { icon: '', name: 'Esempio pratico completo', id: 'esempio-pratico-completo' },
+    { icon: '', name: 'Costruttori di super', id: 'costruttori-super' },
+    { icon: '', name: 'Metodi e attributi di super', id: 'metodi-attributi-super' },
+    { icon: '', name: 'Overriding', id: 'overriding' },
+    { icon: '', name: 'Annotazione override', id: 'annotazione-override' },
+    { icon: '', name: 'Tipi di ereditarietà', id: 'tipi-ereditarieta' },
+    { icon: '', name: 'Gerarchia di Veicolo', id: 'gerarchia-veicolo' },
+    { icon: '', name: 'Quando NON usarla', id: 'quando-non-usare' },
+    { icon: '', name: 'Riepilogo dei vantaggi', id: 'vantaggi' },
   ];
   gsap = inject(GsapService);
   showedQuiz = false;
@@ -30,14 +36,16 @@ export class NavigatorService {
   goToQuiz() {
     this.showedQuiz = !this.showedQuiz;
     if (this.showedQuiz) {
-      this.gsap.instance.to('#appElement', {
-        translateY: '-50%',
+      this.gsap.instance.fromTo('#quizContainer', {
+        top: '100%'
+      }, {
+        top: '0%',
         duration: 1,
         ease: 'expo.inOut'
       });
     } else {
-      this.gsap.instance.to('#appElement', {
-        translateY: '0%',
+      this.gsap.instance.to('#quizContainer', {
+        top: '100%',
         duration: 1,
         ease: 'expo.inOut'
       });;

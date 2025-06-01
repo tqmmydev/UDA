@@ -14,16 +14,84 @@ export class QuizComponent {
   navigator = inject(NavigatorService);
   questions = [
     {
-      question: "What is the capital of France?",
-      answers: ["Paris", "Berlin", "Madrid", "Rome"]
+      question: "Cos'è l'ereditarietà nella programmazione orientata agli oggetti?",
+      answers: [
+        "Una tecnica per duplicare classi",
+        "Una relazione tra oggetti e metodi",
+        "Un modo per creare classi figlie che ereditano da classi madri",
+        "Un sistema per nascondere i dati"
+      ],
+      rightAnswerIndex: 2
     },
     {
-      question: "Which language runs in a web browser?",
-      answers: ["Java", "C", "Python", "JavaScript"]
+      question: "Quale tra i seguenti è un vantaggio dell'ereditarietà?",
+      answers: [
+        "Aumenta la complessità del codice",
+        "Evita il riuso del codice",
+        "Permette l'estendibilità e il polimorfismo",
+        "Rende il codice meno comprensibile"
+      ],
+      rightAnswerIndex: 2
     },
     {
-      question: "Who wrote 'To Kill a Mockingbird'?",
-      answers: ["Harper Lee", "Mark Twain", "J.K. Rowling", "Ernest Hemingway"]
+      question: "Cosa rappresenta la superclasse?",
+      answers: [
+        "La classe che eredita",
+        "La classe base da cui si eredita",
+        "Un metodo astratto",
+        "Una funzione di libreria"
+      ],
+      rightAnswerIndex: 1
+    },
+    {
+      question: "Qual è la parola chiave usata in Java per l'ereditarietà?",
+      answers: [
+        "inherit",
+        "superclass",
+        "parent",
+        "extends"
+      ],
+      rightAnswerIndex: 3
+    },
+    {
+      question: "Che funzione ha la parola chiave 'super' nei costruttori?",
+      answers: [
+        "Richiamare un metodo privato",
+        "Creare un oggetto statico",
+        "Accedere al costruttore della superclasse",
+        "Sovrascrivere un metodo"
+      ],
+      rightAnswerIndex: 2
+    },
+    {
+      question: "Cosa permette di fare l’annotazione @Override?",
+      answers: [
+        "Eredita automaticamente una classe",
+        "Evita l’ereditarietà",
+        "Verifica la correttezza della sovrascrittura di un metodo",
+        "Serve per importare librerie"
+      ],
+      rightAnswerIndex: 2
+    },
+    {
+      question: "Quale tipo di ereditarietà NON è supportata da Java tra classi?",
+      answers: [
+        "Ereditarietà singola",
+        "Ereditarietà gerarchica",
+        "Ereditarietà multilivello",
+        "Ereditarietà multipla"
+      ],
+      rightAnswerIndex: 3
+    },
+    {
+      question: "Quando è meglio usare la composizione al posto dell'ereditarietà?",
+      answers: [
+        "Quando la relazione è 'HA UN'",
+        "Quando vogliamo estendere una classe",
+        "Quando il codice è molto semplice",
+        "Quando usiamo annotazioni"
+      ],
+      rightAnswerIndex: 0
     }
   ];
 
@@ -93,7 +161,7 @@ export class QuizComponent {
       ul.style.marginTop = "20px";
       this.questions.forEach((q, i) => {
         const li = document.createElement('li');
-        li.textContent = `${q.question} - Your answer: ${q.answers[this.userAnswers[i]]}`;
+        li.innerHTML = `${q.question} - <b>Risposta data:</b> ${q.answers[this.userAnswers[i]]} - <b>Risposta corretta:</b> ${this.userAnswers[i] == q.rightAnswerIndex ? '✅' : q.answers[q.rightAnswerIndex]}`;
         li.style.marginBottom = '10px';
         ul.appendChild(li);
       });

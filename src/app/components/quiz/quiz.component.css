@@ -1,5 +1,7 @@
-
 .quiz-container {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #1e1e1e;
   padding: 30px;
   border-radius: 10px;
@@ -23,8 +25,7 @@
 
 .answers {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: .25rem;
 }
 

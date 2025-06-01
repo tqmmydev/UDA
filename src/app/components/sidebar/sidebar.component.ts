@@ -1,5 +1,4 @@
-import { Component, ElementRef, inject, ViewChild, ViewContainerRef, AfterViewInit } from '@angular/core';
-import { AccountComponent } from '../account/account.component';
+import { Component, inject, ViewContainerRef, AfterViewInit } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { NavigatorService } from '../../services/navigator.service';
 import { GetIconComponent } from '../get-icon/get-icon.component';
@@ -8,7 +7,6 @@ import { GsapService } from '../../services/gsap.service';
 @Component({
   selector: 'app-sidebar',
   imports: [
-    AccountComponent,
     GetIconComponent,
     NgFor
   ],

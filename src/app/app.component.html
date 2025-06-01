@@ -1,9 +1,9 @@
-<div class="grid grid-rows-2 h-[200vh]" id="appElement">
+<div class="relative grid grid-rows-2 h-[200vh]">
   <div class="flex flex-row justify-center items-center gap-[4vw] w-screen h-screen overflow-hidden px-4 lg:px-16 py-8">
     <app-sidebar class="max-lg:hidden h-full [direction:rtl]"></app-sidebar>
     <app-scroller class="flex-1 h-full w-full relative"></app-scroller>
   </div>
-  <div class="grid place-self-center relative">
+  <div class="fixed w-full h-full top-full left-0 backdrop-blur-lg" id="quizContainer">
     <app-quiz></app-quiz>
   </div>
 </div>
