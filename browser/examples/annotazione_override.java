@@ -5,8 +5,10 @@ class Uccello {
 }
 
 class Pinguino extends Uccello {
-  // @Override // Se scrivessi "volare()" invece di "vola()",
-              // l'annotazione @Override genererebbe un errore di compilazione.
+  // @Override
+  // Se scrivessi "volare()" invece di "vola()",
+  // l'annotazione @Override genererebbe un errore di compilazione.
+
   public void vola() { // Corretto override
     System.out.println("Il pinguino non vola, nuota!");
   }
